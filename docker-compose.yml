@@ -1,0 +1,15 @@
+services:
+  frontend:
+    build: frontend
+    container_name: frontend
+
+  proxy:
+    build:
+      context: proxy
+      args:
+        - USER_NAME=${USER_NAME}
+        - PASSWORD=${PASSWORD}
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - '80:80'
